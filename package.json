@@ -1,0 +1,41 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.tsx",
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-scripts": "^5.0.0",
+    "lucide-react": "0.475.0",
+    "tailwindcss": "4.0.4",
+    "postcss": "8.5.1",
+    "autoprefixer": "10.4.20",
+    "d3": "7.9.0",
+    "react-leaflet": "5.0.0",
+    "leaflet": "1.9.4"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "loader-utils": "3.2.1",
+    "typescript": "5.7.2",
+    "lucide-react": "0.475.0",
+    "tailwindcss": "4.0.4",
+    "postcss": "8.5.1",
+    "autoprefixer": "10.4.20"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
