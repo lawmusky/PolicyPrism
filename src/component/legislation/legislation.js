@@ -128,7 +128,7 @@ export default function LegislationTracker() {
             className="btn btn-primary"
           >
             <Plus className="w-4 h-4 mr-2" />
-            Track New Item
+            Track New Legislation
           </button>
         </div>
       </div>

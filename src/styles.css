@@ -858,7 +858,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 }
 
 .tab-header h2 {
@@ -905,7 +904,6 @@ body {
 .relationship-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
 }
 
 .relationship-title {
@@ -1082,7 +1080,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 }
 
 .tab-header h2 {
@@ -4868,6 +4865,7 @@ body {
   grid-template-columns: 1.5fr 1fr;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
+  padding-top: 1.5rem;
 }
 
 /* Featured Article */
@@ -4877,6 +4875,7 @@ body {
   border: 1px solid #e5e7eb;
   cursor: pointer;
   transition: all 0.2s;
+  height: 70vh;
 }
 
 .featured-article:hover {
@@ -5079,8 +5078,6 @@ body {
 }
 /* News Feed Section */
 .news-feed-section {
-  margin-top: 2rem;
-  border-top: 1px solid #e5e7eb;
   padding-top: 2rem;
 }
 
@@ -5307,6 +5304,7 @@ body {
 .article-image {
   position: relative;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   border-radius: 0.5rem;
   background-color: #f3f4f6;
@@ -5314,7 +5312,7 @@ body {
 
 .featured-image {
   width: 100%;
-  height: 300px;
+  height: 50vh;
   object-fit: cover;
   background-color: #f3f4f6;
 }
@@ -5322,7 +5320,6 @@ body {
 /* Secondary Article Images */
 .article-card {
   display: grid;
-  grid-template-columns: 120px 1fr;
   gap: 1rem;
 }
 
@@ -5339,11 +5336,12 @@ body {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .feed-image {
-  width: 200px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 0.375rem;
 }
@@ -5604,7 +5602,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 }
 
 .tracker-header h1 {
@@ -5804,7 +5801,7 @@ body {
   left: 19px;
   top: 10px;
   width: 2px;
-  height: calc(100% - 10px);
+  height: calc(100% + 10px);
   background-color: #ddd;
 }
 
@@ -6142,7 +6139,6 @@ body {
 }
 
 .info-item label {
-  font-size: 0.875rem;
   color: #6b7280;
   font-weight: 500;
 }
@@ -6241,4 +6237,39 @@ body {
 
 .btn-secondary:hover {
   background-color: #f3f4f6;
+}
+
+.load-more {
+  width: 100%;
+  padding: 1rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: #6b7280;
+  font-weight: 500;
+  margin-top: 1rem;
+  transition: all 0.2s;
+}
+
+.load-more:hover {
+  background-color: #f9fafb;
+  color: #111827;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .load-more {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #9ca3af;
+  }
+
+  .load-more:hover {
+    background-color: #374151;
+    color: #f9fafb;
+  }
 }
