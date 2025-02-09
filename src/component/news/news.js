@@ -6,8 +6,11 @@ import {
   ExternalLink,
   Share2,
   BookmarkPlus,
+  Filter,
+  ChevronDown,
 } from "lucide-react";
 
+// Featured news items
 const mockNews = [
   {
     id: 1,
@@ -25,6 +28,7 @@ This development represents a significant shift in how the technology industry a
     trending: true,
     source: "Tech Policy Review",
     impact: "High",
+    tags: ["AI Governance", "Industry Coalition", "Policy"],
   },
   {
     id: 2,
@@ -38,6 +42,7 @@ This development represents a significant shift in how the technology industry a
     trending: false,
     source: "Policy Insights",
     impact: "Medium",
+    tags: ["Privacy", "Regulation", "Data Protection"],
   },
   {
     id: 3,
@@ -51,16 +56,72 @@ This development represents a significant shift in how the technology industry a
     trending: true,
     source: "Digital Policy Weekly",
     impact: "High",
+    tags: ["DMA", "Digital Markets", "Compliance"],
+  },
+];
+
+// Extended feed news items
+const mockNewsFeed = [
+  {
+    id: 4,
+    title: "Digital Competition Bill Advances Through Committee",
+    summary:
+      "Key legislative proposal gains support with new amendments addressing platform competition...",
+    content:
+      "Detailed coverage of the Digital Competition Bill's progress through committee, including analysis of key amendments and stakeholder responses.",
+    category: "Legislation",
+    date: "2025-02-06",
+    readTime: "6 min",
+    source: "Policy Watch",
+    impact: "High",
+    tags: ["Competition", "Digital Markets", "Regulation"],
+  },
+  {
+    id: 5,
+    title: "Industry Response to New Privacy Standards",
+    summary:
+      "Major stakeholders react to proposed privacy framework with mixed feedback...",
+    content:
+      "Analysis of industry responses to the new privacy standards, highlighting key concerns and support areas.",
+    category: "Privacy",
+    date: "2025-02-05",
+    readTime: "4 min",
+    source: "Tech Brief",
+    impact: "Medium",
+    tags: ["Privacy", "Industry Standards"],
+  },
+  {
+    id: 6,
+    title: "Global Tech Summit Announces Key Themes",
+    summary:
+      "Annual technology policy conference to focus on AI governance and digital rights...",
+    content:
+      "Preview of the upcoming Global Tech Summit themes and speakers, with insights into major policy discussions.",
+    category: "Events",
+    date: "2025-02-04",
+    readTime: "3 min",
+    source: "Tech Policy Today",
+    impact: "Medium",
+    tags: ["Events", "AI", "Digital Rights"],
   },
 ];
 
 export default function NewsSection() {
   const [selectedArticle, setSelectedArticle] = useState(null);
+  const [activeFilter, setActiveFilter] = useState("all");
+
+  const filters = [
+    { id: "all", label: "All News" },
+    { id: "high-impact", label: "High Impact" },
+    { id: "policy", label: "Policy Updates" },
+    { id: "industry", label: "Industry News" },
+  ];
 
   return (
     <div className="news-section">
+      {/* Top News Grid */}
       <div className="section-header">
-        <h2>Network Insights</h2>
+        <h2>Today's Top Stories</h2>
         <div className="header-actions">
           <button className="btn btn-secondary">
             <TrendingUp className="w-4 h-4 mr-2" />
@@ -121,6 +182,76 @@ export default function NewsSection() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+
+      {/* News Feed Section */}
+      <div className="news-feed-section">
+        <div className="feed-header">
+          <h3>Latest Updates</h3>
+          <div className="feed-filters">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                className={`filter-btn ${
+                  activeFilter === filter.id ? "active" : ""
+                }`}
+                onClick={() => setActiveFilter(filter.id)}
+              >
+                {filter.label}
+              </button>
+            ))}
+            <button className="btn btn-icon">
+              <Filter className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <div className="news-feed">
+          {mockNewsFeed.map((article) => (
+            <div
+              key={article.id}
+              className="feed-article"
+              onClick={() => setSelectedArticle(article)}
+            >
+              <div className="feed-article-content">
+                <div className="article-meta">
+                  <span className="category">{article.category}</span>
+                  <span className={`impact ${article.impact.toLowerCase()}`}>
+                    {article.impact} Impact
+                  </span>
+                </div>
+
+                <h4>{article.title}</h4>
+                <p>{article.summary}</p>
+
+                <div className="article-footer">
+                  <div className="source-info">
+                    <span className="source">{article.source}</span>
+                    <span className="dot">•</span>
+                    <span className="read-time">{article.readTime}</span>
+                  </div>
+                  <div className="article-date">
+                    <Calendar className="w-4 h-4" />
+                    {article.date}
+                  </div>
+                </div>
+
+                <div className="article-tags">
+                  {article.tags.map((tag) => (
+                    <span key={tag} className="tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+
+          <button className="load-more">
+            Load More
+            <ChevronDown className="w-4 h-4" />
+          </button>
         </div>
       </div>
 

@@ -122,6 +122,7 @@ export default function App() {
         {/* Main Content Area */}
         <div className="h-[calc(100vh-4rem)] overflow-auto">
           {currentSection === "overview" && <Dashboard />}
+          {currentSection === "news" && <NewsSection />}
           {currentSection === "network" && <NetworkView />}
           {currentSection === "relationships" && <RelationshipManager />}
           {currentSection === "stakeholders" && (

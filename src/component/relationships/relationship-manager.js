@@ -93,7 +93,7 @@ export default function RelationshipManager() {
           </div>
         </div>
 
-        {/* Rest of the content remains the same */}
+        {/* Table Section */}
         <div className="relationship-list">
           <div className="relationship-table">
             {/* Table Header */}
@@ -107,11 +107,11 @@ export default function RelationshipManager() {
             </div>
 
             {/* Table Body */}
-            <div>
+            <div className="table-body">
               {mockRelationships.map((relationship) => (
                 <div
                   key={relationship.id}
-                  className="table-row"
+                  className="stakeholder-row"
                   onClick={() => setSelectedRelationship(relationship)}
                 >
                   <div className="stakeholder-cell">
@@ -122,18 +122,22 @@ export default function RelationshipManager() {
                       Influence: {relationship.influence}%
                     </div>
                   </div>
-                  <div className="type-badge">{relationship.type}</div>
-                  <div className="strength-indicator">
-                    <div
-                      className={`strength-dot ${relationship.strength.toLowerCase()}`}
-                    />
-                    {relationship.strength}
+                  <div className="type-cell">
+                    <span className="type-badge">{relationship.type}</span>
+                  </div>
+                  <div className="strength-cell">
+                    <div className="strength-indicator">
+                      <div
+                        className={`strength-dot ${relationship.strength.toLowerCase()}`}
+                      />
+                      {relationship.strength}
+                    </div>
                   </div>
                   <div className="last-interaction">
                     <Calendar />
                     {relationship.lastInteraction}
                   </div>
-                  <div>
+                  <div className="status-cell">
                     <span
                       className={`status-badge ${relationship.status.toLowerCase()}`}
                     >
