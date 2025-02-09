@@ -53,7 +53,7 @@ export default function Dashboard() {
 
         {/* Influence Centers */}
         <div className="dashboard-card influence-centers">
-          <h2>Influence Centers</h2>
+          <h2>Influence Changes</h2>
           <div>
             {mockInfluenceCenters.map((center) => (
               <div key={center.id} className="influence-center-item">

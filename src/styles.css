@@ -4803,6 +4803,11 @@ body {
     }
   }
 
+  .details-header h3 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #ffffff;
+  }
   /* Links and Interactive Elements */
   .overview-link {
     color: #60a5fa;
