@@ -12,6 +12,7 @@ import {
   Search,
   Settings,
   ChevronLeft,
+  Newspaper,
 } from "lucide-react";
 
 import "./styles.css";
@@ -24,6 +25,7 @@ import ActivityTab from "./component/activity/activitytab";
 import NetworkView from "./component/network/networkview";
 import Dashboard from "./component/dashboard/dashboard";
 import RelationshipManager from "./component/relationships/relationship-manager";
+import NewsSection from "./component/news/news";
 
 // Mock data for the header
 const stakeholderInfo = {
@@ -55,6 +57,7 @@ export default function App() {
 
   const navigationItems = [
     { icon: Activity, label: "Overview", view: "overview" },
+    { icon: Newspaper, label: "News", view: "news" }, // Add this item
     { icon: Network, label: "Network", view: "network" },
     { icon: Users, label: "Stakeholders", view: "stakeholders" },
     { icon: Users, label: "Relationships", view: "relationships" },
