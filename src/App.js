@@ -13,19 +13,17 @@ import {
   Settings,
   ChevronLeft,
   Newspaper,
+  Landmark, // Add Landmark icon for Legislation
 } from "lucide-react";
 
 import "./styles.css";
 
 // Import components
-import OverviewTab from "./component/overview/overviewtab";
-import PositionsTab from "./component/positions/PositionsTab";
-import RelationshipsTab from "./component/relationships/relationshipstab";
-import ActivityTab from "./component/activity/activitytab";
 import NetworkView from "./component/network/networkview";
 import Dashboard from "./component/dashboard/dashboard";
 import RelationshipManager from "./component/relationships/relationship-manager";
 import NewsSection from "./component/news/news";
+import LegislationTracker from "./component/legislation/legislation"; // Add this import
 
 // Mock data for the header
 const stakeholderInfo = {
@@ -57,9 +55,9 @@ export default function App() {
 
   const navigationItems = [
     { icon: Activity, label: "Overview", view: "overview" },
-    { icon: Newspaper, label: "News", view: "news" }, // Add this item
-    { icon: Network, label: "Network", view: "network" },
-    { icon: Users, label: "Stakeholders", view: "stakeholders" },
+    { icon: Newspaper, label: "News", view: "news" },
+    { icon: Network, label: "Issues", view: "network" },
+    { icon: Landmark, label: "Legislation", view: "legislation" },
     { icon: Users, label: "Relationships", view: "relationships" },
   ];
 
@@ -101,7 +99,7 @@ export default function App() {
         {/* Top Bar */}
         <div className="main-header">
           <div className="search-container">
-            <input type="text" placeholder="Search..." />
+            <input type="text" placeholder="Ask me anything..." />
             <Search className="search-icon" />
           </div>
 
@@ -123,54 +121,9 @@ export default function App() {
         <div className="h-[calc(100vh-4rem)] overflow-auto">
           {currentSection === "overview" && <Dashboard />}
           {currentSection === "news" && <NewsSection />}
+          {currentSection === "legislation" && <LegislationTracker />}
           {currentSection === "network" && <NetworkView />}
           {currentSection === "relationships" && <RelationshipManager />}
-          {currentSection === "stakeholders" && (
-            <>
-              <div className="header">
-                <div className="header-top">
-                  <div className="title-section">
-                    <h1>Tech Industry Association</h1>
-                    <Star className="star-icon" />
-                  </div>
-                  <button className="btn btn-primary">
-                    <Edit className="w-4 h-4" />
-                    Edit Profile
-                  </button>
-                </div>
-
-                <div className="navigation">
-                  {[
-                    { id: "overview", label: "Overview", icon: Activity },
-                    {
-                      id: "relationships",
-                      label: "Relationships",
-                      icon: Users,
-                    },
-                    { id: "positions", label: "Positions", icon: FileText },
-                    { id: "activity", label: "Activity", icon: Calendar },
-                  ].map((tab) => (
-                    <button
-                      key={tab.id}
-                      onClick={() => setActiveTab(tab.id)}
-                      className={`btn btn-secondary ${
-                        activeTab === tab.id ? "active" : ""
-                      }`}
-                    >
-                      <tab.icon className="w-4 h-4" />
-                      <span>{tab.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-              <div className="content-area">
-                {activeTab === "overview" && <OverviewTab />}
-                {activeTab === "positions" && <PositionsTab />}
-                {activeTab === "relationships" && <RelationshipsTab />}
-                {activeTab === "activity" && <ActivityTab />}
-              </div>
-            </>
-          )}
         </div>
       </div>
     </div>

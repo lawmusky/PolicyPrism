@@ -198,18 +198,6 @@ export default function OverviewTabStyled() {
           </div>
         </div>
       </div>
-
-      {/* Activity Timeline */}
-      <div className="activity-timeline">
-        <h2>Activity Timeline</h2>
-        {mockActivity.map((activity) => (
-          <div key={activity.id} className="timeline-item">
-            <div className="date">{activity.date}</div>
-            <div className="description">{activity.description}</div>
-            <div className="type">{activity.type}</div>
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

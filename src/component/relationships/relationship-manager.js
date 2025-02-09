@@ -12,6 +12,11 @@ import {
   Users,
   ArrowRight,
 } from "lucide-react";
+import RelationshipsTab from "./relationshipstab";
+import OverviewTabStyled from "../overview/overviewtab";
+import PositionsTab from "../positions/PositionsTab";
+import ActivityTab from "../activity/activitytab";
+import AnalysisTab from "../analysis/analysistab";
 
 const mockRelationships = [
   {
@@ -46,24 +51,19 @@ const mockRelationships = [
   },
 ];
 
-const relationshipTypes = [
-  "Alliance",
-  "Engagement",
-  "Research",
-  "Opposition",
-  "Neutral",
-];
-const strengthLevels = ["Strong", "Moderate", "Weak"];
-const statuses = ["Active", "Inactive", "Pending"];
-
 export default function RelationshipManager() {
   const [showAddForm, setShowAddForm] = useState(false);
   const [selectedRelationship, setSelectedRelationship] = useState(null);
+  const [activeTab, setActiveTab] = useState("overview");
+
+  const handleStakeholderClick = (relationship) => {
+    setSelectedRelationship(relationship);
+    setActiveTab("overview");
+  };
 
   return (
     <div className="relationship-manager">
       <div className="relationship-content">
-        {/* Header */}
         <div className="relationship-header">
           <div>
             <h1>Relationship Management</h1>
@@ -93,10 +93,8 @@ export default function RelationshipManager() {
           </div>
         </div>
 
-        {/* Table Section */}
         <div className="relationship-list">
           <div className="relationship-table">
-            {/* Table Header */}
             <div className="table-header">
               <div>Stakeholder</div>
               <div>Type</div>
@@ -106,25 +104,26 @@ export default function RelationshipManager() {
               <div>Actions</div>
             </div>
 
-            {/* Table Body */}
             <div className="table-body">
               {mockRelationships.map((relationship) => (
                 <div
                   key={relationship.id}
                   className="stakeholder-row"
-                  onClick={() => setSelectedRelationship(relationship)}
+                  onClick={() => handleStakeholderClick(relationship)}
                 >
                   <div className="stakeholder-cell">
                     <div className="stakeholder-name">
                       {relationship.stakeholder}
-                    </div>
-                    <div className="stakeholder-influence">
-                      Influence: {relationship.influence}%
+                      <div className="stakeholder-influence">
+                        Influence: {relationship.influence}%
+                      </div>
                     </div>
                   </div>
+
                   <div className="type-cell">
                     <span className="type-badge">{relationship.type}</span>
                   </div>
+
                   <div className="strength-cell">
                     <div className="strength-indicator">
                       <div
@@ -133,10 +132,12 @@ export default function RelationshipManager() {
                       {relationship.strength}
                     </div>
                   </div>
+
                   <div className="last-interaction">
-                    <Calendar />
+                    <Calendar className="w-4 h-4 mr-2" />
                     {relationship.lastInteraction}
                   </div>
+
                   <div className="status-cell">
                     <span
                       className={`status-badge ${relationship.status.toLowerCase()}`}
@@ -144,12 +145,13 @@ export default function RelationshipManager() {
                       {relationship.status}
                     </span>
                   </div>
+
                   <div className="actions-cell">
                     <button className="action-button">
-                      <Edit />
+                      <Edit className="w-4 h-4" />
                     </button>
                     <button className="action-button">
-                      <Trash />
+                      <Trash className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
@@ -159,130 +161,53 @@ export default function RelationshipManager() {
         </div>
       </div>
 
-      {/* Details Sidebar */}
       {selectedRelationship && (
-        <div className="details-sidebar">
-          <div className="details-header">
-            <div className="details-header-top">
-              <h2 className="details-title">
-                {selectedRelationship.stakeholder}
-              </h2>
-              <button
-                onClick={() => setSelectedRelationship(null)}
-                className="close-details"
-              >
-                <ArrowRight />
-              </button>
-            </div>
-            <div className="details-content">
-              <div className="details-section">
-                <div className="details-field">
-                  <div className="field-label">Relationship Type</div>
-                  <div className="field-value">{selectedRelationship.type}</div>
-                </div>
-                <div className="details-field">
-                  <div className="field-label">Strength</div>
-                  <div className="field-value">
-                    {selectedRelationship.strength}
-                  </div>
-                </div>
-                <div className="details-field">
-                  <div className="field-label">Status</div>
-                  <div className="field-value">
-                    {selectedRelationship.status}
-                  </div>
-                </div>
+        <div
+          className="sidebar-overlay"
+          onClick={() => setSelectedRelationship(null)}
+        >
+          <div
+            className={`sidebar-slide-in ${selectedRelationship ? "open" : ""}`}
+            onClick={(e) => e.stopPropagation()} // Prevent click from propagating to the overlay
+          >
+            <div className="sidebar-content">
+              <div className="sidebar-header">
+                <h2>{selectedRelationship.stakeholder}</h2>
+                <button
+                  onClick={() => setSelectedRelationship(null)}
+                  className="close-button"
+                >
+                  <ArrowRight />
+                </button>
               </div>
 
-              <div className="details-section">
-                <h3 className="details-section-title">Shared Initiatives</h3>
-                <div className="details-field">
-                  {selectedRelationship.initiatives.map((initiative, index) => (
-                    <div key={index} className="field-value">
-                      <Link />
-                      {initiative}
-                    </div>
-                  ))}
-                </div>
+              <div className="sidebar-navigation">
+                {[
+                  { id: "overview", label: "Overview" },
+                  { id: "relationships", label: "Relationships" },
+                  { id: "positions", label: "Positions" },
+                  { id: "activities", label: "Activities" },
+                  { id: "analysis", label: "Analysis" },
+                ].map((tab) => (
+                  <button
+                    key={tab.id}
+                    className={`nav-tab ${
+                      activeTab === tab.id ? "active" : ""
+                    }`}
+                    onClick={() => setActiveTab(tab.id)}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
               </div>
-            </div>
-          </div>
-        </div>
-      )}
 
-      {/* Add Relationship Modal */}
-      {showAddForm && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h2 className="modal-title">Add New Relationship</h2>
-            </div>
-            <div className="modal-body">
-              <div className="form-field">
-                <label className="form-label">Stakeholder</label>
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="Search and select stakeholder..."
-                />
+              <div className="sidebar-tabs">
+                {activeTab === "overview" && <OverviewTabStyled />}
+                {activeTab === "relationships" && <RelationshipsTab />}
+                {activeTab === "positions" && <PositionsTab />}
+                {activeTab === "activities" && <ActivityTab />}
+                {activeTab === "analysis" && <AnalysisTab />}
               </div>
-              <div className="form-grid">
-                <div className="form-field">
-                  <label className="form-label">Relationship Type</label>
-                  <select className="form-select">
-                    {relationshipTypes.map((type) => (
-                      <option key={type} value={type}>
-                        {type}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="form-field">
-                  <label className="form-label">Strength</label>
-                  <select className="form-select">
-                    {strengthLevels.map((level) => (
-                      <option key={level} value={level}>
-                        {level}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div className="form-field">
-                <label className="form-label">Status</label>
-                <select className="form-select">
-                  {statuses.map((status) => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="form-field">
-                <label className="form-label">Initiatives</label>
-                <input
-                  type="text"
-                  className="form-input"
-                  placeholder="Add shared initiatives..."
-                />
-              </div>
-              <div className="form-field">
-                <label className="form-label">Notes</label>
-                <textarea
-                  className="form-textarea"
-                  rows="3"
-                  placeholder="Add any additional notes..."
-                />
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button
-                onClick={() => setShowAddForm(false)}
-                className="cancel-button"
-              >
-                Cancel
-              </button>
-              <button className="submit-button">Add Relationship</button>
             </div>
           </div>
         </div>

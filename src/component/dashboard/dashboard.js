@@ -17,6 +17,27 @@ const mockRecentActivity = [
   },
 ];
 
+const mockTopNews = [
+  {
+    id: 1,
+    headline: "Major Tech Merger Under Investigation",
+    source: "Reuters",
+    time: "1h ago",
+  },
+  {
+    id: 2,
+    headline: "New Data Privacy Regulations Announced",
+    source: "BBC",
+    time: "3h ago",
+  },
+  {
+    id: 3,
+    headline: "AI Innovations Set to Disrupt Market",
+    source: "TechCrunch",
+    time: "5h ago",
+  },
+];
+
 export default function Dashboard() {
   const getTrendIcon = (trend) => {
     switch (trend) {
@@ -41,73 +62,77 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="dashboard-container">
-      <div className="dashboard-grid">
-        {/* Network Overview */}
-        <div className="dashboard-card network-overview">
-          <h2>Network Overview</h2>
-          <div className="network-visualization">
-            [Network Visualization Placeholder]
-          </div>
+    <>
+      <div className="tracker-header">
+        <div>
+          <h1>Welcome back</h1>
+          <p>Here's what you missed...</p>
         </div>
+      </div>
+      <div className="dashboard-container">
+        <div className="dashboard-grid">
+          {/* Recent Activity */}
+          <div className="dashboard-card recent-activity">
+            <h2>New Updates</h2>
+            <div>
+              {mockRecentActivity.map((activity) => (
+                <div key={activity.id} className="activity-item">
+                  <div className={`activity-icon ${activity.type}`}>
+                    {getActivityEmoji(activity.type)}
+                  </div>
+                  <div className="activity-content">
+                    <div className="activity-event">{activity.event}</div>
+                    <div className="activity-time">{activity.time}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
-        {/* Influence Centers */}
-        <div className="dashboard-card influence-centers">
-          <h2>Influence Changes</h2>
-          <div>
-            {mockInfluenceCenters.map((center) => (
-              <div key={center.id} className="influence-center-item">
-                <div className="influence-info">
-                  <h3>{center.name}</h3>
-                  <span className="influence-score">
-                    Influence: {center.influence}%
+          {/* Top News */}
+          <div className="dashboard-card top-news">
+            <h2>Top News Stories</h2>
+            <div>
+              {mockTopNews.map((news) => (
+                <div key={news.id} className="news-item">
+                  <h3>{news.headline}</h3>
+                  <p className="news-source">
+                    {news.source} - {news.time}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Network Overview */}
+          <div className="dashboard-card network-overview">
+            <h2>Your Network Today</h2>
+            <div className="network-visualization">
+              [Network Visualization Placeholder]
+            </div>
+          </div>
+
+          {/* Influence Centers */}
+          <div className="dashboard-card influence-centers">
+            <h2>Influence Changes</h2>
+            <div>
+              {mockInfluenceCenters.map((center) => (
+                <div key={center.id} className="influence-center-item">
+                  <div className="influence-info">
+                    <h3>{center.name}</h3>
+                    <span className="influence-score">
+                      Influence: {center.influence}%
+                    </span>
+                  </div>
+                  <span className={`trend-indicator trend-${center.trend}`}>
+                    {getTrendIcon(center.trend)}
                   </span>
                 </div>
-                <span className={`trend-indicator trend-${center.trend}`}>
-                  {getTrendIcon(center.trend)}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Recent Activity */}
-        <div className="dashboard-card recent-activity">
-          <h2>Recent Activity</h2>
-          <div>
-            {mockRecentActivity.map((activity) => (
-              <div key={activity.id} className="activity-item">
-                <div className={`activity-icon ${activity.type}`}>
-                  {getActivityEmoji(activity.type)}
-                </div>
-                <div className="activity-content">
-                  <div className="activity-event">{activity.event}</div>
-                  <div className="activity-time">{activity.time}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Quick Actions */}
-        <div className="dashboard-card quick-actions">
-          <h2>Quick Actions</h2>
-          <div>
-            <button className="action-button">
-              <Users className="icon" />
-              Add Stakeholder
-            </button>
-            <button className="action-button">
-              <Network className="icon" />
-              Map Relationship
-            </button>
-            <button className="action-button">
-              <TrendingUp className="icon" />
-              Run Analysis
-            </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

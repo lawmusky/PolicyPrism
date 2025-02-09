@@ -326,9 +326,7 @@ body {
 }
 
 .position-status {
-  padding: 0.25rem 0.75rem;
   border-radius: 9999px;
-  font-size: 0.875rem;
   font-weight: 500;
 }
 
@@ -686,9 +684,7 @@ body {
 }
 
 .position-status {
-  padding: 0.25rem 0.75rem;
   border-radius: 9999px;
-  font-size: 0.75rem;
   font-weight: 500;
 }
 
@@ -1855,14 +1851,14 @@ body {
 .network-view {
   height: 100vh;
   display: flex;
-  background-color: #f3f4f6;
+  background-color: #f9fafb;
 }
 
 /* Network View Layout */
 .network-view {
   height: 100vh;
   display: flex;
-  background-color: #f3f4f6;
+  background-color: #f9fafb;
   overflow: hidden;
 }
 
@@ -2277,7 +2273,6 @@ body {
 }
 /* Dashboard Container */
 .dashboard-container {
-  padding: 1.5rem;
   background-color: #f9fafb;
   min-height: 100%;
 }
@@ -2310,7 +2305,7 @@ body {
 }
 
 .network-visualization {
-  height: 16rem;
+  height: 32rem;
   background-color: #f3f4f6;
   border-radius: 0.5rem;
   display: flex;
@@ -2340,6 +2335,7 @@ body {
 }
 
 .influence-info h3 {
+  font-size: 1rem;
   font-weight: 500;
   color: #111827;
   margin-bottom: 0.25rem;
@@ -2476,7 +2472,7 @@ body {
   }
 
   .network-visualization {
-    height: 20rem;
+    height: 32rem;
   }
 }
 
@@ -2491,10 +2487,6 @@ body {
 
   .dashboard-card {
     padding: 1rem;
-  }
-
-  .network-visualization {
-    height: 16rem;
   }
 }
 
@@ -2702,7 +2694,7 @@ body {
 
 /* Stakeholder Cell */
 .stakeholder-cell {
-  grid-column: span 3;
+  grid-column: span 1;
 }
 
 .stakeholder-name {
@@ -2718,7 +2710,7 @@ body {
 
 /* Type Badge */
 .type-badge {
-  grid-column: span 2;
+  grid-column: span 1;
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.75rem;
@@ -2731,7 +2723,7 @@ body {
 
 /* Strength Indicator */
 .strength-indicator {
-  grid-column: span 2;
+  grid-column: span 1;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -2757,7 +2749,7 @@ body {
 
 /* Last Interaction */
 .last-interaction {
-  grid-column: span 2;
+  grid-column: span 1;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -2767,7 +2759,7 @@ body {
 
 /* Status Badge */
 .status-badge {
-  grid-column: span 2;
+  grid-column: span 1;
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.75rem;
@@ -2821,7 +2813,6 @@ body {
 }
 
 .details-header {
-  padding: 1.5rem;
   border-bottom: 1px solid #e5e7eb;
 }
 
@@ -3017,7 +3008,7 @@ body {
   }
 
   .stakeholder-cell {
-    grid-column: span 4;
+    grid-column: span 1;
   }
 }
 
@@ -3507,7 +3498,7 @@ body {
 }
 
 .relationship-header h1 {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
   color: #111827;
   margin: 0;
@@ -5304,4 +5295,950 @@ body {
 
 .stakeholder-row:last-child {
   border-bottom: none;
+}
+
+/* Featured Article Image */
+.featured-article {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.article-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background-color: #f3f4f6;
+}
+
+.featured-image {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  background-color: #f3f4f6;
+}
+
+/* Secondary Article Images */
+.article-card {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+}
+
+.card-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 0.375rem;
+  background-color: #f3f4f6;
+}
+
+/* Feed Article Images */
+.feed-article {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 1.5rem;
+}
+
+.feed-image {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 0.375rem;
+}
+
+/* Dark Mode Adjustments */
+@media (prefers-color-scheme: dark) {
+  .article-image {
+    background-color: #1f2937;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .featured-image {
+    height: 200px;
+  }
+
+  .feed-article {
+    grid-template-columns: 1fr;
+  }
+
+  .feed-image {
+    width: 100%;
+    height: 200px;
+  }
+
+  .article-card {
+    grid-template-columns: 80px 1fr;
+  }
+
+  .card-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Legislation Tracker Base Styles */
+.legislation-tracker {
+  display: flow;
+  height: 100%;
+  background-color: #f9fafb;
+}
+
+/* Header Section */
+.tracker-header {
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1.5rem;
+}
+
+.search-filter-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+/* Legislation Item Card */
+.legislation-item {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: all 0.2s;
+}
+
+.legislation-item:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.status-badge.in-committee {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.status-badge.draft {
+  background-color: #e5e7eb;
+  color: #4b5563;
+}
+
+.status-badge.passed {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+/* Priority Badges */
+.priority-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.priority-badge.high {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.priority-badge.medium {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.priority-badge.low {
+  background-color: #f3f4f6;
+  color: #4b5563;
+}
+
+/* Tags */
+.tag {
+  padding: 0.25rem 0.75rem;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: #4b5563;
+}
+
+/* Details Sidebar */
+.details-sidebar {
+  width: 24rem;
+  border-left: 1px solid #e5e7eb;
+  background-color: white;
+  overflow-y: auto;
+}
+
+.details-content {
+  padding: 1.5rem;
+}
+
+.details-section {
+  margin-bottom: 2rem;
+}
+
+.details-section h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+/* Timeline Styles */
+.timeline {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: #e5e7eb;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 1.5rem;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -1.5rem;
+  top: 0.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 9999px;
+  background-color: #3b82f6;
+  border: 2px solid white;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .legislation-tracker {
+    background-color: #111827;
+  }
+
+  .tracker-header,
+  .legislation-item,
+  .details-sidebar {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .legislation-item:hover {
+    background-color: #1f2937;
+  }
+
+  .status-badge.in-committee {
+    background-color: rgba(37, 99, 235, 0.2);
+    color: #60a5fa;
+  }
+
+  .status-badge.draft {
+    background-color: rgba(75, 85, 99, 0.2);
+    color: #9ca3af;
+  }
+
+  .status-badge.passed {
+    background-color: rgba(16, 185, 129, 0.2);
+    color: #34d399;
+  }
+
+  .tag {
+    background-color: #374151;
+    color: #d1d5db;
+  }
+
+  .timeline::before {
+    background-color: #374151;
+  }
+
+  .timeline-item::before {
+    background-color: #3b82f6;
+    border-color: #1f2937;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .details-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 50;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-filter-bar {
+    flex-direction: column;
+  }
+
+  .details-sidebar {
+    width: 100%;
+  }
+}
+/* Container styles */
+.legislation-tracker {
+  padding: 1.5rem;
+  background-color: #f9fafb;
+  min-height: 100%;
+}
+
+/* Header section */
+.tracker-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.tracker-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Search and filter bar */
+.search-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  flex: 1;
+  max-width: 320px;
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.625rem 1rem 0.625rem 2.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.search-box .search-icon {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+}
+
+/* Legislation list */
+.legislation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.legislation-item {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+/* Legislation item header */
+.legislation-header {
+  margin-bottom: 1rem;
+}
+
+.legislation-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.legislation-reference {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Status badges */
+.status-badges {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.badge.in-committee {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.badge.public-consultation {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+.badge.high-priority {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.badge.high-impact {
+  background-color: #e0e7ff;
+  color: #3730a3;
+}
+
+/* Legislation content */
+.legislation-description {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 1rem;
+}
+
+/* Info items */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* Tags */
+.tags-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 0.25rem 0.75rem;
+  background-color: #f3f4f6;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: #4b5563;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .legislation-tracker {
+    background-color: #111827;
+  }
+
+  .legislation-item {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .legislation-title {
+    color: #f9fafb;
+  }
+
+  .legislation-description {
+    color: #9ca3af;
+  }
+
+  .tag {
+    background-color: #374151;
+    color: #d1d5db;
+  }
+}
+.item-details {
+  display: none;
+}
+
+.view-btn {
+  padding: 15px;
+}
+.top-news {
+  grid-column: span 4;
+}
+
+.news-item {
+  position: relative;
+  margin: 20px 0;
+  padding-left: 40px;
+}
+
+.news-item::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #007bff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
+}
+
+.news-item::after {
+  content: "";
+  position: absolute;
+  left: 19px;
+  top: 10px;
+  width: 2px;
+  height: calc(100% - 10px);
+  background-color: #ddd;
+}
+
+.news-item:last-child::after {
+  display: none;
+}
+
+.news-item h3 {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+}
+
+.news-source {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 5px;
+}
+
+@media (max-width: 600px) {
+  .news-item {
+    padding-left: 30px;
+  }
+
+  .news-item::before {
+    left: 10px;
+  }
+
+  .news-item::after {
+    left: 14px;
+  }
+}
+.issue-button {
+  padding: 10px 15px;
+  margin: 5px;
+  border: none;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  background-color: #6c757d; /* Grey by default */
+  color: #fff;
+}
+
+.issue-button.selected:nth-child(1) {
+  background-color: #007bff; /* Blue */
+}
+
+.issue-button.selected:nth-child(2) {
+  background-color: #28a745; /* Green */
+}
+
+.issue-button.selected:nth-child(3) {
+  background-color: #ffc107; /* Yellow */
+}
+
+.issue-button.selected:nth-child(4) {
+  background-color: #dc3545; /* Red */
+}
+
+.issue-button.selected:nth-child(5) {
+  background-color: #17a2b8; /* Teal */
+}
+
+.issue-button:hover {
+  opacity: 0.8;
+}
+
+.issue-button:hover {
+  opacity: 0.8;
+}
+
+.issue-button.selected {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .issue-button {
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+.active-issues-section h3 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+}
+
+.active-issues-buttons {
+  padding-bottom: 2em;
+}
+
+.modal-slide-in {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.modal-slide-in.open {
+  transform: translateX(0);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.sidebar-slide-in {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.sidebar-slide-in.open {
+  transform: translateX(0);
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.sidebar-header h2 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar-navigation {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-tab {
+  padding: 10px 15px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.nav-tab:hover {
+  color: #007bff;
+}
+
+.nav-tab.active {
+  color: #007bff;
+  border-bottom: 2px solid #007bff;
+}
+
+.sidebar-tabs {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.relationship-content.shrink {
+  width: 40%;
+  transition: width 0.3s ease;
+}
+
+@media (max-width: 600px) {
+  .modal-slide-in,
+  .sidebar-overlay {
+    width: 100%;
+  }
+}
+
+/* Add specific styles for content within each tab if needed */
+.overview-tab,
+.relationships-tab,
+.positions-tab,
+.activity-tab,
+.analysis-tab {
+  padding: 15px;
+}
+.modal-slide-in,
+.sidebar-slide-in {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  border-left: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-slide-in.open,
+.sidebar-slide-in.open {
+  transform: translateX(0);
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1.5rem;
+  background-color: #f9fafb;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.sidebar-header h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #111827;
+}
+
+.sidebar-navigation {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.nav-tab {
+  padding: 0.75rem 1rem;
+  border: none;
+  background: none;
+  color: #6b7280;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-tab:hover {
+  color: #111827;
+  background-color: #f3f4f6;
+}
+
+.nav-tab.active {
+  background-color: #eff6ff;
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+}
+
+.sidebar-tabs {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding: 1rem 0;
+}
+
+.details-section {
+  margin-bottom: 2rem;
+  background-color: white;
+  padding: 1.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.details-section h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.info-item label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.info-item span {
+  font-weight: 500;
+  color: #111827;
+}
+
+.dates-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timeline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+  border-radius: 0.375rem;
+  border: 1px solid #e5e7eb;
+}
+
+.stakeholders-list .stakeholder-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.stakeholders-list .stakeholder-item:hover {
+  background-color: #f3f4f6;
+}
+
+.position-details .label {
+  color: #6b7280;
+  margin-right: 0.5rem;
+}
+
+.position-details .value {
+  font-weight: 500;
+  color: #2563eb;
+}
+
+@media (max-width: 600px) {
+  .modal-slide-in,
+  .sidebar-slide-in,
+  .sidebar-overlay {
+    width: 100%;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Hover Effects */
+
+.nav-tab:hover,
+.close-button:hover {
+  color: #1d4ed8;
+}
+
+.stakeholder-item:hover .icon {
+  color: #2563eb;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #2563eb;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1d4ed8;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #f3f4f6;
 }
