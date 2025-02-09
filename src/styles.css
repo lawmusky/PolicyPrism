@@ -813,7 +813,7 @@ body {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -0.3125rem;
+  left: 0.3125rem;
   top: 0.25rem;
   width: 0.625rem;
   height: 0.625rem;
@@ -3184,7 +3184,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-header h1 {
@@ -3352,7 +3351,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .sidebar-header h1 {
@@ -5514,7 +5512,7 @@ body {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -1.5rem;
+  left: 0.5rem;
   top: 0.25rem;
   width: 0.75rem;
   height: 0.75rem;
@@ -5950,7 +5948,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #ddd;
   padding-bottom: 10px;
 }
 
@@ -6061,7 +6058,6 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e5e7eb;
 }
 
 .sidebar-header h2 {
@@ -6156,7 +6152,6 @@ body {
 
 .timeline-item {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0.75rem 1rem;
   background-color: #f9fafb;
@@ -6272,4 +6267,714 @@ body {
     background-color: #374151;
     color: #f9fafb;
   }
+}
+
+/* Insights Section Container */
+.insights-section {
+  padding: 1.5rem;
+  background-color: #f9fafb;
+  min-height: 100%;
+}
+
+/* Header Styles */
+.insights-header {
+  padding: 1.5rem;
+  background-color: #fff;
+  padding-bottom: 0px;
+}
+
+.insights-header h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+.header-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.date-range-select {
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+  background-color: white;
+}
+
+/* View Tabs */
+.view-tabs {
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.view-tab {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.view-tab:hover {
+  color: #111827;
+}
+
+.view-tab.active {
+  color: #2563eb;
+  border-bottom-color: #2563eb;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: transform 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.metric-title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.metric-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #2563eb;
+}
+
+.metric-content {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.metric-value {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.metric-trend {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.metric-trend.up {
+  color: #059669;
+}
+
+.metric-trend.down {
+  color: #dc2626;
+}
+
+/* Analytics Grid */
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 1.5rem;
+}
+
+.analytics-card {
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.card-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.card-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #6b7280;
+}
+
+.card-content {
+  min-height: 300px;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .insights-section {
+    background-color: #111827;
+  }
+
+  .insights-header h1 {
+    color: #f9fafb;
+  }
+
+  .metric-card,
+  .analytics-card {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .metric-title {
+    color: #9ca3af;
+  }
+
+  .metric-value {
+    color: #f9fafb;
+  }
+
+  .view-tab {
+    color: #9ca3af;
+  }
+
+  .view-tab:hover {
+    color: #f9fafb;
+  }
+
+  .view-tabs {
+    border-bottom-color: #374151;
+  }
+
+  .date-range-select {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+
+  .card-header h3 {
+    color: #f9fafb;
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .view-tabs {
+    overflow-x: auto;
+    padding-bottom: 1px;
+  }
+
+  .view-tab {
+    white-space: nowrap;
+  }
+}
+
+.legislative-timeline {
+  padding: 1.5rem;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-legend {
+  display: flex;
+  gap: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.timeline-container {
+  overflow-x: auto;
+  padding-bottom: 1rem;
+}
+
+.timeline-stages {
+  display: flex;
+  min-width: min-content;
+  gap: 1rem;
+  position: relative;
+  padding: 1rem 0;
+}
+
+.timeline-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.stage-connector {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.connector-line {
+  flex: 1;
+  height: 2px;
+  background-color: #e5e7eb;
+}
+
+.stage-node {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 2px solid #e5e7eb;
+  z-index: 10;
+}
+
+.timeline-stage.completed .stage-node {
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.timeline-stage.current .stage-node {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.timeline-stage.upcoming .stage-node {
+  border-color: #e5e7eb;
+  color: #9ca3af;
+}
+
+.stage-content {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.stage-name {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.stage-milestone {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.milestone-date {
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .legislative-timeline {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .connector-line {
+    background-color: #374151;
+  }
+
+  .stage-node {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+
+  .stage-name {
+    color: #f9fafb;
+  }
+
+  .milestone-date {
+    color: #d1d5db;
+  }
+}
+/* Dark Mode Styles */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #111827;
+    color: #f9fafb;
+  }
+
+  .top-nav {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+
+  .nav-button {
+    color: #f9fafb;
+  }
+
+  .nav-button.active {
+    background-color: #374151;
+  }
+
+  .main-view {
+    background-color: #1a202c;
+  }
+
+  .header {
+    background-color: #1f2937;
+    border-bottom: 1px solid #374151;
+  }
+
+  .navigation {
+    background-color: #1f2937;
+    border-bottom: 1px solid #374151;
+  }
+
+  .tab-button {
+    color: #a0aec0;
+  }
+
+  .tab-button.active {
+    background-color: #4a5568;
+    color: #f9fafb;
+  }
+
+  .content-area {
+    background-color: #1a202c;
+  }
+
+  .card,
+  .overview-card,
+  .relationship-card,
+  .analysis-card {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  }
+
+  .card h2,
+  .overview-card h2,
+  .relationship-card h3,
+  .analysis-card h3 {
+    color: #f9fafb;
+  }
+
+  .contact-item .icon,
+  .relationship-item .icon,
+  .trend-indicator {
+    color: #a0aec0;
+  }
+
+  .relationship-item:hover {
+    background-color: #4a5568;
+  }
+
+  .activity-dot {
+    background-color: #4299e1;
+  }
+
+  .status-badge.completed {
+    background-color: #38a169;
+    color: #f9fafb;
+  }
+
+  .status-badge.pending {
+    background-color: #d69e2e;
+    color: #f9fafb;
+  }
+
+  .impact-badge.high {
+    background-color: #2b6cb0;
+    color: #f9fafb;
+  }
+
+  .impact-badge.medium {
+    background-color: #4a5568;
+    color: #f9fafb;
+  }
+
+  .relationship-type.alliance {
+    background-color: #2b6cb0;
+    color: #f9fafb;
+  }
+
+  .relationship-type.stakeholder {
+    background-color: #4a5568;
+    color: #f9fafb;
+  }
+
+  .relationship-type.research {
+    background-color: #5a67d8;
+    color: #f9fafb;
+  }
+
+  .network-area {
+    background-color: #1a202c;
+    border: 1px solid #4a5568;
+  }
+
+  .network-toolbar {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+  }
+
+  .toolbar-button {
+    color: #a0aec0;
+  }
+
+  .toolbar-button:hover {
+    background-color: #4a5568;
+    color: #f9fafb;
+  }
+
+  .network-visualization {
+    background-color: #2d3748;
+    color: #a0aec0;
+  }
+
+  .details-panel {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+  }
+
+  .metric-value,
+  .activity-event,
+  .influence-info h3 {
+    color: #f9fafb;
+  }
+
+  .filter-button {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+    color: #a0aec0;
+  }
+
+  .filter-button:hover {
+    background-color: #4a5568;
+  }
+
+  .stakeholder-card,
+  .activity-item,
+  .influence-center-item {
+    background-color: #2d3748;
+    color: #a0aec0;
+  }
+
+  .stakeholder-card:hover,
+  .activity-item:hover,
+  .influence-center-item:hover {
+    background-color: #4a5568;
+  }
+
+  .modal-content {
+    background-color: #2d3748;
+    border: 1px solid #4a5568;
+  }
+
+  .modal-header,
+  .modal-footer {
+    background-color: #2d3748;
+    border-color: #4a5568;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    background-color: #1a202c;
+    border: 1px solid #4a5568;
+    color: #f9fafb;
+  }
+
+  .form-input:focus,
+  .form-select:focus,
+  .form-textarea:focus {
+    border-color: #4299e1;
+  }
+
+  .submit-button {
+    background-color: #3182ce;
+    color: #f9fafb;
+  }
+
+  .submit-button:hover {
+    background-color: #2b6cb0;
+  }
+  .tracker-header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  .news-item h3 {
+    font-size: 1rem;
+    color: #fff;
+    margin: 0;
+  }
+
+  .news-source {
+    font-size: 0.9rem;
+    color: #ddd;
+    margin-top: 5px;
+  }
+
+  .insights-header {
+    padding: 1.5rem;
+    background-color: #1f2937;
+    padding-bottom: 0px;
+  }
+
+  .relationship-table {
+    background-color: #1f2937;
+    border: 1px solid #21355c;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  .table-header {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 2fr 2fr 1fr;
+    grid-gap: 1rem;
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #21355c;
+    border-bottom: 1px solid #5a9beb;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #ffffff;
+    text-transform: uppercase;
+  }
+  .stakeholder-row {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 2fr 2fr 1fr;
+    grid-gap: 1rem;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #21355c;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .strength-indicator {
+    grid-column: span 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #ddd;
+  }
+
+  .last-interaction {
+    grid-column: span 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #ddd;
+  }
+}
+/* Table View Styling */
+
+.legislation-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.legislation-table th,
+.legislation-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.legislation-table th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+}
+
+.legislation-table tr:hover {
+  background-color: #f9fafb;
+  cursor: pointer;
+}
+
+.legislation-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Dark Mode Styling */
+
+body.dark .legislation-table {
+  background-color: #1f2937;
+  color: #f9fafb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+body.dark .legislation-table th {
+  background-color: #374151;
+  color: #d1d5db;
+}
+
+body.dark .legislation-table td {
+  border-bottom: 1px solid #4b5563;
+}
+
+body.dark .legislation-table tr:hover {
+  background-color: #4b5563;
+}
+
+body.dark .legislation-table tr:last-child td {
+  border-bottom: none;
 }

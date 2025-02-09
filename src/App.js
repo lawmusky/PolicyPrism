@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Menu,
   Star,
@@ -13,7 +13,10 @@ import {
   Settings,
   ChevronLeft,
   Newspaper,
-  Landmark, // Add Landmark icon for Legislation
+  Landmark,
+  BarChart2,
+  Sun,
+  Moon,
 } from "lucide-react";
 
 import "./styles.css";
@@ -23,9 +26,9 @@ import NetworkView from "./component/network/networkview";
 import Dashboard from "./component/dashboard/dashboard";
 import RelationshipManager from "./component/relationships/relationship-manager";
 import NewsSection from "./component/news/news";
-import LegislationTracker from "./component/legislation/legislation"; // Add this import
+import LegislationTracker from "./component/legislation/legislation";
+import InsightsSection from "./component/insights/insights";
 
-// Mock data for the header
 const stakeholderInfo = {
   name: "Tech Industry Association",
   type: "Industry Association",
@@ -36,9 +39,20 @@ const stakeholderInfo = {
 
 export default function App() {
   const [selectedView, setSelectedView] = useState("stakeholder");
-  const [activeTab, setActiveTab] = useState("overview");
   const [currentSection, setCurrentSection] = useState("overview");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(
+    () => localStorage.getItem("darkMode") === "true"
+  );
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+    localStorage.setItem("darkMode", isDarkMode);
+  }, [isDarkMode]);
 
   const handleNavigation = (section) => {
     setCurrentSection(section);
@@ -53,12 +67,17 @@ export default function App() {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
   const navigationItems = [
     { icon: Activity, label: "Overview", view: "overview" },
     { icon: Newspaper, label: "News", view: "news" },
     { icon: Network, label: "Issues", view: "network" },
     { icon: Landmark, label: "Legislation", view: "legislation" },
     { icon: Users, label: "Relationships", view: "relationships" },
+    { icon: BarChart2, label: "Insights", view: "insights" },
   ];
 
   return (
@@ -92,6 +111,14 @@ export default function App() {
             </button>
           ))}
         </nav>
+
+        {/* Dark Mode Toggle */}
+        <div className="dark-mode-toggle">
+          <button onClick={toggleDarkMode} className="nav-item">
+            {isDarkMode ? <Sun /> : <Moon />}
+            <span>{isDarkMode ? "Light Mode" : "Dark Mode"}</span>
+          </button>
+        </div>
       </div>
 
       {/* Main Content */}
@@ -124,6 +151,7 @@ export default function App() {
           {currentSection === "legislation" && <LegislationTracker />}
           {currentSection === "network" && <NetworkView />}
           {currentSection === "relationships" && <RelationshipManager />}
+          {currentSection === "insights" && <InsightsSection />}
         </div>
       </div>
     </div>
