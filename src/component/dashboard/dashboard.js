@@ -1,4 +1,42 @@
 import { Users, Network, TrendingUp } from "lucide-react";
+import NetworkVisualization from "../network/graphvisualisation";
+
+const mockActiveIssues = [
+  "Data Privacy",
+  "AI Regulation",
+  "Platform Liability",
+  "Digital Competition",
+  "Content Moderation",
+];
+
+const mockFilters = [
+  {
+    id: "type",
+    label: "Type",
+    options: [
+      "All",
+      "Industry",
+      "Advocacy",
+      "Research",
+      "Government",
+      "Standards",
+      "Professional",
+      "Media",
+      "International",
+      "Academic",
+    ],
+  },
+  {
+    id: "influence",
+    label: "Influence",
+    options: ["All", "High", "Medium", "Low"],
+  },
+  {
+    id: "relationship",
+    label: "Relationship",
+    options: ["All", "Strong", "Moderate", "Weak"],
+  },
+];
 
 const mockInfluenceCenters = [
   { id: 1, name: "Tech Industry Coalition", influence: 85, trend: "up" },
