@@ -2130,7 +2130,6 @@ body {
   background: url(https://www.cursor.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fgradient-hero-prerender.3af0e196.webp&w=1920&q=75)
       left top no-repeat,
     url(https://www.cursor.com/noise.webp) left top no-repeat;
-  background-position: left;
   filter: drop-shadow(0 0 0.75rem #1e1e2d);
   background-size: cover;
 }

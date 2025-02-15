@@ -41,18 +41,66 @@ export default function App() {
   const [selectedView, setSelectedView] = useState("stakeholder");
   const [currentSection, setCurrentSection] = useState("overview");
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [mousePosition, setMousePosition] = useState({
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+  });
   const [isDarkMode, setIsDarkMode] = useState(
     () => localStorage.getItem("darkMode") === "true"
   );
 
+  // Dark mode effect
   useEffect(() => {
     if (isDarkMode) {
-      document.body.classList.add("dark");
+      localStorage.setItem("darkMode", "true");
+      document.documentElement.setAttribute("data-theme", "dark");
     } else {
-      document.body.classList.remove("dark");
+      localStorage.setItem("darkMode", "false");
+      document.documentElement.setAttribute("data-theme", "light");
     }
     localStorage.setItem("darkMode", isDarkMode);
   }, [isDarkMode]);
+
+  useEffect(() => {
+    const updateBackgroundPosition = () => {
+      // Get current time
+      const now = new Date();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+
+      // Convert current time to decimal hours (e.g., 6:30 = 6.5)
+      const timeInDecimal = hours + minutes / 60;
+
+      // Calculate position based on time
+      let position;
+      if (timeInDecimal <= 12) {
+        // From midnight to noon: 0% to 100%
+        position = (timeInDecimal / 12) * 100;
+      } else {
+        // From noon to midnight: 100% to 0%
+        position = ((24 - timeInDecimal) / 12) * 100;
+      }
+
+      // Get mouse position
+      const mouseX = ((mousePosition.x - 50) / 100) * 50; // -25px to +25px
+
+      // Apply the combined position
+      const sidebar = document.querySelector(".dashboard-sidebar");
+      if (sidebar) {
+        const finalPosition = `${position}% top`;
+
+        sidebar.style.backgroundPosition = finalPosition;
+      }
+    };
+
+    // Update immediately
+    updateBackgroundPosition();
+
+    // Update more frequently for debugging
+    const interval = setInterval(updateBackgroundPosition, 1);
+
+    return () => clearInterval(interval);
+  }, [mousePosition]); // Include mousePosition in dependencies
 
   const handleNavigation = (section) => {
     setCurrentSection(section);
@@ -85,6 +133,9 @@ export default function App() {
       {/* Sidebar */}
       <div
         className={`dashboard-sidebar ${isSidebarCollapsed ? "collapsed" : ""}`}
+        style={{
+          transition: "0.3s ease-out",
+        }}
       >
         <div className="sidebar-header">
           <div>
