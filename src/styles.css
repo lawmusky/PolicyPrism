@@ -2141,6 +2141,15 @@ body {
   margin-bottom: 0.5rem;
 }
 
+.mep_photo {
+  width: 100px;
+  height: 100px;
+}
+
+.mep_table {
+  padding: 20px;
+}
+
 .dashboard-nav {
   margin-top: 2rem;
 }
@@ -7363,6 +7372,12 @@ body.dark .legislation-table tr:last-child td {
 /* ID Group - Dark Navy */
 [data-group="ID"] {
   background-color: #213766;
+  color: white;
+}
+
+/* Patriots - Black */
+[data-group="PAT"] {
+  background-color: #000;
   color: white;
 }
 

@@ -16,6 +16,7 @@ import {
   Youtube,
   Instagram,
   Upload,
+  User,
 } from "lucide-react";
 
 //MEP Info Sidebar
@@ -28,12 +29,36 @@ const MEPDetailSidebar = ({ mep, onClose }) => {
         className="absolute right-0 top-0 h-full w-[600px] bg-white shadow-xl overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-6">
+        <div className="sidebar-content">
+          <div className="sidebar-header">
+            <div className="rounded-full overflow-hidden bg-gray-100 flex-shrink-0 mep_photo">
+              {mep.photoURL ? (
+                <img
+                  src={mep.photoURL}
+                  alt={mep.stakeholder}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.src = "/api/placeholder/64/64";
+                    e.target.alt = "Profile placeholder";
+                  }}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                  <User className="w-8 h-8 text-gray-400" />
+                </div>
+              )}
+            </div>
             <h2 className="text-2xl font-bold">{mep.stakeholder}</h2>
             <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded">
               <ArrowRight />
             </button>
+          </div>
+          <div className="sidebar-navigation">
+            <button className="nav-tab active">Overview</button>
+            <button className="nav-tab">Key Info</button>
+            <button className="nav-tab">Dates</button>
+            <button className="nav-tab">Stakeholders</button>
+            <button className="nav-tab">Position</button>
           </div>
 
           {/* Basic Information Section */}
@@ -271,6 +296,10 @@ const getGroupInfo = (groupName) => {
       acronym: "NI",
       fullName: "Non-attached Members",
     },
+    "Patriots for Europe Group": {
+      acronym: "PAT",
+      fullName: "Patriots for Europe Group",
+    },
   };
 
   for (const [key, value] of Object.entries(groupMap)) {
@@ -283,13 +312,74 @@ const getGroupInfo = (groupName) => {
 // Main MEP Relationship Manager Component
 export default function MEPRelationshipManager() {
   const [relationships, setRelationships] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true); // Changed to true by default
   const [selectedMEP, setSelectedMEP] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filterGroup, setFilterGroup] = useState("");
   const [filterCountry, setFilterCountry] = useState("");
   const [filterCommittee, setFilterCommittee] = useState("");
 
+  // Function to process CSV data
+  const processCSVData = (text) => {
+    const parsedData = parseCSV(text);
+
+    const transformedData = parsedData.map((mep, index) => ({
+      id: index + 1,
+      stakeholder: `${mep["First name"]} ${mep["Last name"]}`,
+      photoURL: mep.photoURL,
+      type: mep.group,
+      position: mep.position,
+      country: mep.country,
+      party: mep.party,
+      contacts: {
+        email: [mep.email_1, mep.email_2].filter(Boolean),
+        phone: [mep.telephone_1, mep.telephone_2].filter(Boolean),
+        social: {
+          twitter: mep.tw_link,
+          facebook: mep.fb_link,
+          instagram: mep.ig_link,
+          linkedin: mep.li_link,
+          youtube: mep.yt_link,
+          website: mep.web_link,
+        },
+      },
+      committees: Object.entries(mep)
+        .filter(
+          ([key, value]) =>
+            value === "Member" || value === "Substitute" || value === "Chair"
+        )
+        .map(([key, value]) => ({ committee: key, role: value })),
+      addresses: {
+        brussels: mep.address_brussels,
+        strasbourg: mep.address_strassbourg,
+      },
+      rawData: mep,
+    }));
+
+    setRelationships(transformedData);
+    setLoading(false);
+  };
+
+  // Load initial CSV data
+  useEffect(() => {
+    const loadInitialData = async () => {
+      try {
+        const response = await fetch("./all_MEPs.csv");
+        if (!response.ok) {
+          throw new Error("Failed to load CSV file");
+        }
+        const text = await response.text();
+        processCSVData(text);
+      } catch (error) {
+        console.error("Error loading initial MEP data:", error);
+        setLoading(false);
+      }
+    };
+
+    loadInitialData();
+  }, []);
+
+  // Handle manual file upload
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -301,44 +391,7 @@ export default function MEPRelationshipManager() {
 
       reader.onload = async (e) => {
         const text = e.target.result;
-        const parsedData = parseCSV(text);
-
-        const transformedData = parsedData.map((mep, index) => ({
-          id: index + 1,
-          stakeholder: `${mep["First name"]} ${mep["Last name"]}`,
-          type: mep.group,
-          position: mep.position,
-          country: mep.country,
-          party: mep.party,
-          contacts: {
-            email: [mep.email_1, mep.email_2].filter(Boolean),
-            phone: [mep.telephone_1, mep.telephone_2].filter(Boolean),
-            social: {
-              twitter: mep.tw_link,
-              facebook: mep.fb_link,
-              instagram: mep.ig_link,
-              linkedin: mep.li_link,
-              youtube: mep.yt_link,
-              website: mep.web_link,
-            },
-          },
-          committees: Object.entries(mep)
-            .filter(
-              ([key, value]) =>
-                value === "Member" ||
-                value === "Substitute" ||
-                value === "Chair"
-            )
-            .map(([key, value]) => ({ committee: key, role: value })),
-          addresses: {
-            brussels: mep.address_brussels,
-            strasbourg: mep.address_strassbourg,
-          },
-          rawData: mep,
-        }));
-
-        setRelationships(transformedData);
-        setLoading(false);
+        processCSVData(text);
       };
 
       reader.readAsText(file);
@@ -389,9 +442,9 @@ export default function MEPRelationshipManager() {
   });
 
   return (
-    <div className="w-full h-full bg-white">
-      <div className="p-6">
-        <div className="mb-6">
+    <div className="main-content expanded">
+      <div className="p-6h-[calc(100vh-4rem)] overflow-auto">
+        <div className="tracker-header">
           <h1 className="text-2xl font-bold mb-4">Relationship Manager</h1>
 
           {relationships.length === 0 && !loading ? (
@@ -491,7 +544,8 @@ export default function MEPRelationshipManager() {
             <table className="min-w-full border-collapse">
               <thead>
                 <tr className="bg-gray-50">
-                  <th className="py-3 px-4 text-left">MEP</th>
+                  <th className="py-3 px-4 text-left">Name</th>
+                  <th className="py-3 px-4 text-left"></th>
                   <th className="py-3 px-4 text-left">Group</th>
                   <th className="py-3 px-4 text-left">Country</th>
                   <th className="py-3 px-4 text-left">Position</th>
@@ -506,6 +560,25 @@ export default function MEPRelationshipManager() {
                     className="border-t hover:bg-gray-50 cursor-pointer"
                     onClick={() => setSelectedMEP(mep)}
                   >
+                    <td className="mep_table">
+                      <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-100 flex-shrink-0">
+                        {mep.photoURL ? (
+                          <img
+                            src={mep.photoURL}
+                            alt={mep.stakeholder}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.target.src = "/api/placeholder/64/64";
+                              e.target.alt = "Profile placeholder";
+                            }}
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center bg-gray-100">
+                            <User className="w-8 h-8 text-gray-400" />
+                          </div>
+                        )}
+                      </div>
+                    </td>
                     <td className="py-3 px-4">{mep.stakeholder}</td>
                     <td className="py-3 px-4">
                       <span
